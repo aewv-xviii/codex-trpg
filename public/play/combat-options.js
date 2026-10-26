@@ -1,0 +1,3 @@
+// Shared declaration vocabulary; numerical authority remains on the server.
+export const attackManeuvers={attack:'공격',stepAttack:'한 걸음 후 공격',moveAttack:'이동 공격',allOutDetermined:'전력공격 · 정확',allOutStrong:'전력공격 · 강타',allOutDouble:'전력공격 · 2회',committedDetermined:'적극적 공격 · 정확',committedStrong:'적극적 공격 · 강타',defensiveAttack:'방어적 공격'};
+export const postures={standing:{label:'서기',attack:0,defense:0,ranged:0},crouching:{label:'웅크리기',attack:-2,defense:0,ranged:-2},kneeling:{label:'무릎 꿇기',attack:-2,defense:-2,ranged:-2},sitting:{label:'앉기',attack:-2,defense:-2,ranged:-2},prone:{label:'엎드리기',attack:-4,defense:-3,ranged:-2},supine:{label:'바로 눕기',attack:-4,defense:-3,ranged:-2}};

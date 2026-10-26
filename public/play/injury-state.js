@@ -1,0 +1,8 @@
+// Stable keys shared by the server and status displays. GURPS Basic Set B399, B419-422.
+export const hitLocations={torso:{label:'몸통',penalty:0},neck:{label:'목',penalty:-5},vitals:{label:'급소',penalty:-3},skull:{label:'두개골',penalty:-7},face:{label:'얼굴',penalty:-5},leftArm:{label:'왼팔',penalty:-2,divisor:2},rightArm:{label:'오른팔',penalty:-2,divisor:2},leftLeg:{label:'왼다리',penalty:-2,divisor:2},rightLeg:{label:'오른다리',penalty:-2,divisor:2},leftHand:{label:'왼손',penalty:-4,divisor:3},rightHand:{label:'오른손',penalty:-4,divisor:3},leftFoot:{label:'왼발',penalty:-4,divisor:3},rightFoot:{label:'오른발',penalty:-4,divisor:3},leftEye:{label:'왼눈',penalty:-9,divisor:10},rightEye:{label:'오른눈',penalty:-9,divisor:10}};
+Object.assign(hitLocations,{groin:{label:'사타구니',penalty:-3,parent:'torso'},jaw:{label:'턱 · 정면',penalty:-6,parent:'face',fallback:'torso'}});
+for(const side of ['left','right'])for(const limb of ['Arm','Leg','Hand','Foot']){const parent=side+limb,extreme=['Hand','Foot'].includes(limb);hitLocations[parent+'Joint']={label:hitLocations[parent].label+' 관절',penalty:extreme?-7:-5,divisor:extreme?4:3,parent,joint:true,fallback:parent};}
+export const isCrippled=(c,part)=>!!c.injuries?.[part];
+export const legDisabled=c=>['leftLeg','rightLeg','leftFoot','rightFoot'].some(p=>isCrippled(c,p));
+export const handDisabled=(c,hand)=>isCrippled(c,hand+'Hand')||isCrippled(c,hand+'Arm');
+export function weaponDisabled(c){const hand=c.combatProfile?.weaponHand;return hand==='both'?handDisabled(c,'left')||handDisabled(c,'right'):hand==='left'||hand==='right'?handDisabled(c,hand):handDisabled(c,'left')&&handDisabled(c,'right');}

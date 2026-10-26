@@ -1,0 +1,26 @@
+.prepared-calendar{display:grid;gap:12px;margin:10px 0 22px}
+.prepared-case{border:1px solid #404b4a;border-left:3px solid #718782;padding:18px;background:linear-gradient(115deg,#192323,#151b1c)}
+.prepared-case.active{border-left-color:#e2b166}
+.prepared-label{display:flex;justify-content:space-between;gap:12px;color:#9bb0a9;font-size:11px;letter-spacing:.08em}
+.prepared-case h3{margin:10px 0;font-size:19px;color:#f0e8d8}
+.prepared-case p{color:#b4c0ba;line-height:1.7;margin:8px 0 16px;white-space:pre-wrap}
+.local-destinations{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin:16px 0}
+.local-destinations button{display:flex;flex-direction:column;align-items:flex-start;gap:7px;padding:12px;white-space:normal;text-align:left}
+.local-destinations small{color:#a9b5b1}
+.local-destinations [aria-current]{opacity:1;border-color:#d7a968;background:#332b20;color:#f2dcb4}
+.journey-heading{display:flex;gap:16px;align-items:center;font-size:16px;flex-wrap:wrap}
+.journey-heading span{color:#d7a968}
+.journey-diagram{display:block;width:100%;height:auto;max-height:260px;background:radial-gradient(ellipse at center,#1d2b2e,#13191c);border:1px solid #35464a}
+.journey-diagram line{stroke:#415256;stroke-width:2;stroke-dasharray:5 5}
+.journey-diagram line.selected{stroke:#d7a968;stroke-width:4;stroke-dasharray:none}
+.journey-diagram circle{fill:#6d8685;stroke:#172020;stroke-width:3}
+.journey-diagram .destination circle{fill:#e2b166}
+.journey-diagram .origin circle{fill:#a4c7c0}
+.journey-diagram text{fill:#d4ddd7;font-size:13px;font-family:inherit}
+.trip-estimate{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:#1d2525;padding:16px;border-top:1px solid #6b7769}
+.trip-estimate div{display:grid;gap:6px}
+.trip-estimate small{color:#9aada7}
+.trip-estimate strong{margin-left:auto;color:#e2b166}
+.trip-estimate p{flex-basis:100%;margin:0;color:#e6b6a8}
+.pack-counts{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0;color:#e2b166}
+@media(max-width:560px){.prepared-case{padding:14px}.local-destinations{grid-template-columns:1fr 1fr}.trip-estimate{gap:9px}.journey-diagram text{font-size:15px}}

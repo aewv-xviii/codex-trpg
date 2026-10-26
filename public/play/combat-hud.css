@@ -1,0 +1,73 @@
+/* Carousel-style order, Battle Board-style roster; original implementation. */
+.main.in-combat{--battle-height:112px}
+.main.in-combat>.table-canvas{top:var(--battle-height)}
+#combat-hud.battle-hud{position:absolute;inset:0 0 auto;height:auto;display:grid;grid-template-columns:minmax(0,1fr) 128px;gap:8px;align-items:start;z-index:5;padding:6px 14px 4px;background:linear-gradient(110deg,#141c1e,#101517);border-bottom:1px solid #a9946955;box-sizing:border-box;color:#eee7d8}
+#combat-hud[hidden],.battle-roster-panel[hidden]{display:none}
+.battle-heading{grid-column:2;grid-row:1;align-self:start;display:flex;align-items:flex-start;min-width:0;font-size:11px}
+.battle-round{font-variant-numeric:tabular-nums;color:#e9c78c;font-weight:700;letter-spacing:.08em}
+.battle-current{display:block;max-width:100%;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.5;color:#e5e1d6}
+.battle-roster-toggle{width:100%;min-width:0;min-height:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-end;gap:2px;text-align:right;padding:2px 0;border:0;background:transparent;box-shadow:none;color:#e9d7b3;border-radius:0;font-size:11px;line-height:1.5}.battle-roster-toggle:hover{background:transparent;color:#fff0ce}.battle-roster-toggle:focus-visible{outline:1px solid #dcc18d;outline-offset:2px}
+.battle-strip{grid-column:1;grid-row:1;position:relative;display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:#776b56 transparent;padding-bottom:5px;overscroll-behavior:contain}
+.battle-person{display:flex;align-items:flex-start;gap:9px;flex:0 0 210px;min-width:0;height:96px;min-height:96px;padding:10px;box-sizing:border-box;border:1px solid #ffffff16;border-left:2px solid #81aaad;border-radius:4px;background:#ffffff03;position:relative}
+.battle-person.enemy{border-left-color:#ba7976}
+.battle-person.is-current{border-color:#dcc18d;background:#d1b07614;box-shadow:inset 0 0 0 1px #dcc18d20}
+.battle-person.is-reacting{border-bottom:2px solid #c5d4e7}
+.battle-avatar{display:grid;place-items:center;position:relative;flex:0 0 40px;width:40px;height:40px;overflow:hidden;border-radius:50%;background:#263032;border:1px solid #b7a47b66;font-size:16px;color:#ddc390}
+.battle-avatar>.portrait-art{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:1}
+.battle-vitals{flex:1;min-width:0;display:grid;gap:2px;font-variant-numeric:tabular-nums}
+.battle-name{display:flex;gap:4px;align-items:center;min-width:0}
+.battle-name b{font-size:13px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.4;flex:1;font-weight:600}
+.battle-name small{font-size:10px;color:#acb6b5;flex-shrink:0}
+.is-current .battle-name small{color:#e5c18b}
+.battle-hp{display:flex;justify-content:space-between;gap:5px;font-size:11px;color:#9cafad}
+.battle-hp strong{font-weight:500;color:#dedfd7}
+.battle-meter{display:block;height:3px;background:#ffffff0c;overflow:hidden;border-radius:2px}
+.battle-meter i{display:block;height:100%;background:#83b4ae;transition:width 420ms ease-out}
+.enemy .battle-meter i{background:#bd8985}
+.battle-condition{display:block;font-size:11px;color:#e0b18c;min-height:26px;height:26px;white-space:nowrap;overflow:hidden;line-height:1.5}
+.battle-roster-panel{flex:0 0 auto;min-height:0;max-height:42%;background:#151e20;border-bottom:1px solid #b7a47b55;display:flex;flex-direction:column}
+.battle-roster-panel header{display:flex;align-items:center;justify-content:space-between;padding:7px 14px;color:#d8c6a6;font-size:11px}
+.battle-roster-panel header button{font-size:18px;padding:0 8px;min-height:28px;background:none;border:0}
+.battle-roster-list{overflow:auto;min-height:0;padding:0 10px 8px;overscroll-behavior:contain;scrollbar-width:thin}
+.battle-roster-list .battle-person{width:100%;height:96px;min-height:96px;margin-bottom:4px}
+.battle-roster-list .battle-name b{font-size:12px}
+.battle-roster-list .battle-name small,.battle-roster-list .battle-hp{font-size:10px}
+.battle-roster-list .battle-condition{font-size:9px}
+.main.in-combat>.map-toolbar{top:calc(var(--battle-height) + 12px)}
+.main.in-combat .novel-stage .novel-dialogue.novel-dialogue{--dialogue-height:124px;max-height:calc(100% - 250px);padding:12px 20px;gap:5px}
+.main.in-combat .novel-dialogue p{font-size:16px;line-height:1.7}
+.battle-impact{position:absolute;z-index:10;pointer-events:none;transform:translate(-50%,-50%);font-size:20px;font-weight:700;white-space:nowrap;padding:4px 9px;text-shadow:0 2px 4px #000;background:#17191bd9;border:1px solid #e0a39855;border-radius:4px;color:#ffcebd;animation:battle-number 900ms ease-out both}
+.battle-impact.defense{font-size:14px;color:#d6e9e4;border-color:#a3c8cc55}
+.battle-direction{position:absolute;z-index:5;pointer-events:none;height:2px;background:linear-gradient(90deg,#d7bd8555,#ffe6a5);transform-origin:left center;animation:battle-line 450ms ease-out both}
+@keyframes battle-number{0%{opacity:0;translate:0 5px}18%,70%{opacity:1}100%{opacity:0;translate:0 -15px}}
+@keyframes battle-line{0%,100%{opacity:0}30%{opacity:.85}}
+@media(max-width:760px){
+ .main.in-combat{--battle-height:106px}
+ #combat-hud.battle-hud{height:auto;padding:6px 8px;grid-template-columns:minmax(0,1fr) 104px;gap:6px}
+ .battle-heading{grid-column:2;grid-row:1}
+ .battle-roster-toggle{font-size:10px;padding:0}.battle-strip{grid-column:1;grid-row:1}
+ .battle-person{height:90px;min-height:90px;flex-basis:190px;padding:8px}
+ .battle-avatar{width:34px;height:34px;flex-basis:34px}
+ .main.in-combat:has(.roster[data-party-count])>.stage-tabs{top:calc(var(--battle-height) + 4px);left:4px}
+ .app-shell:has(.main.in-combat){grid-template-rows:50px 38px minmax(320px,42dvh) minmax(0,1fr)}
+ .main.in-combat>.roster{height:44px;bottom:2px}
+ .main.in-combat>.roster>.character-chip{height:42px;flex-basis:145px}
+ .main.in-combat>.roster .roster-portrait,.main.in-combat>.roster .roster-portrait>.portrait-art{width:30px;flex-basis:30px}
+ .main.in-combat>.roster .resource-meter.fp{display:none}
+ .main.in-combat:has(.roster[data-party-count]) .scene-person{top:30px;bottom:48px}
+ .main.in-combat .scene-person .standing-portrait{inset:0;height:100%}
+ .main.in-combat:has(.roster[data-party-count]) .novel-dialogue.novel-dialogue{bottom:50px;--dialogue-height:80px;max-height:calc(100% - 90px);padding:6px 10px;gap:3px}
+ .main.in-combat .novel-dialogue p{font-size:12px}
+ .main.in-combat>.map-toolbar{top:calc(var(--battle-height) + 36px)}
+ .battle-roster-panel{max-height:38%}
+ .battle-impact{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){.battle-meter i{transition:none}.battle-impact,.battle-direction{animation:none}.battle-direction{display:none}}
+.battle-plans:empty{display:none}
+.battle-plans{grid-column:1 / -1}.battle-plans:not(:empty){max-height:72px;overflow:auto;margin-top:3px;scrollbar-width:thin}
+.battle-plan{display:flex;align-items:center;justify-content:space-between;gap:.7rem;padding:.45rem .8rem;border-top:1px solid var(--line,#655940);font-size:.78rem;line-height:1.45}
+.battle-plan span{min-width:0;overflow-wrap:anywhere}
+.battle-plan button{flex-shrink:0;padding:.3rem .6rem;font-size:.75rem}
+
+
+.battle-condition .condition-badges{height:24px;min-height:24px;flex-wrap:nowrap;overflow:hidden;gap:4px;margin-top:2px}.battle-condition .condition-badge{flex-basis:24px;height:24px}.battle-condition .condition-badge svg{width:16px;height:16px}.battle-reaction{display:block;max-width:100%;font-size:10px;color:#c5d4e7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.battle-reaction:empty{display:none}

@@ -1,0 +1,6 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>캠페인 다시 시작 · 밤의 테이블</title>
+<style>body{font:16px/1.7 system-ui;background:#141820;color:#eae8e2;max-width:760px;margin:60px auto;padding:24px}h1{font-size:28px}input,button{font:inherit;padding:12px;border:1px solid #67747d;border-radius:6px;background:#222c36;color:inherit}button{cursor:pointer}button:disabled{opacity:.5}pre{white-space:pre-wrap}a{color:#abd6d0}label{display:block;margin:24px 0}#status{padding:18px;background:#202630}</style>
+<h1>캠페인 다시 시작</h1><p>기존 캠페인은 보관본으로 남깁니다. 같은 방과 참가자를 유지하고, 선택한 두 캐릭터의 시트·초상화·소지품·자산을 보존합니다. HP·FP와 전투 상태는 시작 상태로 돌아갑니다.</p>
+<label>다시 시작 자료 <input type="file" id="file" accept=".json"></label><details><summary>파일 대신 자료 붙여넣기</summary><label>재시작 자료 JSON<textarea id="source" rows="4" style="width:100%"></textarea></label><button id="load" type="button">붙여넣은 자료 확인</button></details><pre id="summary">자료 파일을 선택하세요.</pre><button id="apply" disabled>보관 후 최신 자료로 다시 시작</button><p id="status" role="status">대기 중</p><a href="/play/">플레이로 돌아가기</a>
+<script type="module" src="/play/replay.js"></script></html>
+

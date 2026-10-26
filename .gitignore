@@ -1,0 +1,6 @@
+.local-data/
+node_modules/
+.env*
+*.log
+rulebooks/*
+!rulebooks/README.md

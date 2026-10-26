@@ -1,0 +1,143 @@
+/* Play surface: image framing is local; conversation stays inside the viewport. */
+.compose-speaker .portrait-avatar { position:relative; isolation:isolate; contain:paint; }
+.composer .compose-tabs { display:flex; gap:4px; padding:0; border:0; border-top:1px solid var(--line); border-radius:0; background:none; }
+.composer .compose-tabs button { flex:1; min-height:32px; padding:6px 10px; border:0; border-bottom:2px solid transparent; border-radius:0; font-size:12px; }
+.composer .compose-tabs button.active,.composer .compose-tabs button[aria-selected=true] { background:#ffffff06; border-bottom-color:#cdb585; box-shadow:none; }
+.chat-panel { min-width:0; }
+.chat-log { overscroll-behavior:contain; scrollbar-gutter:stable; }
+.compose-speaker { margin:4px 0 6px; }
+.compose-options summary { padding:3px 0; }
+.roster-hint { display:none; }
+@media (min-width:1101px) {
+ .app-shell { grid-template-columns:68px minmax(0,1fr) clamp(360px,30vw,480px); }
+ .brand-seal { width:68px; }
+}
+@media (max-width:760px) {
+ html,body { height:100%; overflow:hidden; }
+ .app-shell { width:100%; height:100dvh; min-height:0; grid-template-columns:minmax(0,1fr); grid-template-rows:50px 38px minmax(180px,30dvh) minmax(0,1fr); overflow:hidden; }
+ .table-header { grid-column:1; grid-row:1; height:50px; position:relative; flex-wrap:nowrap; padding:0 10px 0 0; gap:8px; }
+ .brand-seal { width:42px; height:49px; font-size:36px; }
+ .table-header h1 { font-size:14px; max-width:100%; }
+ .table-header p { font-size:9px; margin:0; }
+ .table-identity { min-width:0; flex:1; }
+ .header-actions { gap:4px; margin:0; }
+ .header-actions button { padding:7px; font-size:10px; }
+ .sidebar { grid-column:1; grid-row:2; position:static; height:38px; padding:0; border-right:0; border-bottom:1px solid var(--line); overflow:hidden; }
+ .sidebar nav { flex-direction:row; gap:0; height:100%; }
+ .sidebar .nav-button { flex:1; flex-direction:row; gap:4px; padding:4px; min-width:0; font-size:10px; border:0; border-bottom:2px solid transparent; }
+ .sidebar .nav-button.active { border-bottom-color:#cdb585; }
+ .sidebar .nav-button span { display:block; }
+ .sidebar .nav-button .icon { width:15px; height:15px; }
+ .sidebar .rail-bottom { display:none; }
+ .main { grid-column:1; grid-row:3; min-height:0; height:auto; padding:0; }
+ .main .novel-stage { min-height:0; height:100%; }
+ .main:has(.roster[data-party-count]) .stage-tabs { left:8px; bottom:auto; top:8px; height:28px; z-index:4; }
+ .stage-tabs button { padding:4px 9px; font-size:10px; }
+ .main .roster { bottom:6px; left:8px; right:8px; height:64px; display:flex; gap:6px; overflow-x:auto; overflow-y:hidden; scrollbar-width:thin; }
+ .main .roster>.character-chip { flex:0 0 176px; width:176px; height:62px; min-width:0; padding:0; gap:0; }
+ .main .roster .roster-portrait { flex:0 0 44px; width:44px; height:100%; overflow:hidden; }
+ .main .roster .roster-portrait>.portrait-art { width:44px; height:100%; }
+ .main .roster .roster-status { min-width:0; padding:4px 7px; gap:2px; }
+ .main .roster .roster-name { font-size:12px; }
+ .main .roster .roster-controller,.main .roster .roster-hint { display:none; }
+ .main .roster .resource-meter { gap:1px; }
+ .main .roster .resource-meter>span:first-child { font-size:9px; }
+ .main .roster .resource-meter strong { font-size:9px; }
+ .main .roster .resource-meter progress { height:3px; }
+ .main:has(.roster[data-party-count]) .scene-person { top:6px; bottom:72px; width:44%; }
+ .main .standing-portrait { bottom:72px; height:calc(100% - 78px); }
+ .main .scene-person .standing-portrait { inset:0; height:100%; width:100%; }
+ .main:has(.roster[data-party-count]) .novel-dialogue { left:8px; right:8px; bottom:76px; padding:9px 12px; max-height:calc(100% - 120px); overflow:auto; }
+ .novel-dialogue p { font-size:12px; line-height:1.65; }
+ .novel-dialogue .speaker { font-size:10px; margin-bottom:4px; }
+ .scene-operation { top:8px; left:auto; right:8px; }
+ .scene-image { min-height:0; height:100%; }
+ .map-toolbar { top:44px; max-height:calc(100% - 114px); overflow:auto; }
+ .chat-panel { grid-column:1; grid-row:4; min-height:0; height:auto; border-left:0; border-top:1px solid var(--line); }
+ .log-tabs { height:32px; margin:0 12px; gap:18px; }
+ .log-tabs button { padding:4px 2px; font-size:11px; }
+ .chat-log { min-height:0; padding:4px 10px 10px; }
+ .chat-log .chat-entry { padding:10px 12px; }
+ .chat-log .chat-entry>.message-heading { margin-bottom:6px; }
+ .chat-entry p { font-size:12px; line-height:1.8; }
+ .composer { margin:0 10px 4px; position:static; z-index:auto; max-height:65%; overflow:auto; }
+ .composer .compose-tabs { margin-bottom:3px; }
+ .composer .compose-tabs button { min-height:28px; padding:4px 8px; }
+ .compose-speaker { font-size:12px; margin:2px 0 4px; gap:7px; }
+ .compose-speaker .message-seal { flex-basis:24px; width:24px; height:24px; }
+ .compose-row textarea { min-height:42px; height:42px; max-height:80px; padding:8px; resize:none; }
+ .compose-row .primary { width:40px; }
+ .composer .compose-choice { min-height:26px; margin-bottom:4px; }
+ .composer .compose-choice select { min-height:26px; padding:3px 8px; }
+ .compose-help { display:none; }
+ .quick-dice { margin:0 10px; padding:3px 0!important; }
+ .quick-dice input,.quick-dice button { padding:4px 8px; font-size:11px; }
+ .turn-bar { margin:3px 10px 6px; min-height:16px; }
+ .gm-status { font-size:9px; }
+ .workspace-drawer { position:fixed; left:0; right:0; top:88px; bottom:0; width:100%; z-index:12; }
+ .workspace-drawer .main-content { min-height:0; overflow:auto; padding:16px; }
+ .checks-drawer { bottom:72px; }
+ dialog { top:55px; max-height:calc(100dvh - 65px); }
+}
+@media (max-height:650px) and (max-width:760px) {
+ .app-shell { grid-template-rows:44px 34px minmax(130px,26dvh) minmax(0,1fr); }
+ .table-header { height:44px; }.brand-seal { height:43px; }.sidebar { height:34px; }
+ .workspace-drawer { top:78px; }
+}
+
+/* One speaker/destination row replaces mode tabs plus a recipient row. */
+.compose-toolbar{display:flex;align-items:center;gap:10px;min-width:0;border-top:1px solid var(--line);padding:9px 0 6px}
+.compose-toolbar .compose-speaker{flex:0 1 40%;min-width:0;margin:0}
+.compose-destination{display:block;flex:1;min-width:0;margin:0}
+.compose-destination select{display:block;width:100%;min-width:0;height:34px;padding:5px 9px;font-size:12px}
+.compose-toolbar .compose-speaker strong{min-width:0}
+@media(max-width:760px){.compose-toolbar{padding:7px 0 5px;gap:8px}.compose-destination select{height:30px;font-size:12px}.compose-toolbar .compose-speaker{flex-basis:32%}}
+
+/* The frame stays still; only the dialogue body scrolls. */
+.main .novel-stage .novel-dialogue.novel-dialogue {
+ --dialogue-height:clamp(170px,25dvh,230px);
+ box-sizing:border-box;height:var(--dialogue-height);max-height:calc(100% - 250px);
+ display:flex;flex-direction:column;gap:8px;overflow:hidden;padding:18px 24px;
+}
+.main .novel-stage .novel-dialogue[hidden]{display:none}
+.novel-dialogue>.speaker{flex:none;margin:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.novel-dialogue>.scene-dialogue-text{
+ flex:1;min-height:0;margin:0;overflow:auto;overscroll-behavior:contain;
+ scrollbar-width:thin;scrollbar-gutter:stable;white-space:pre-wrap;overflow-wrap:anywhere;
+ padding:2px 10px 2px 0;
+}
+.novel-dialogue>.scene-dialogue-text:focus-visible{outline:1px solid var(--accent);outline-offset:2px}
+.novel-dialogue>.scene-reading{flex:none;margin:0;min-height:32px}
+@media(max-width:760px){
+ .app-shell{grid-template-rows:50px 38px minmax(250px,34dvh) minmax(0,1fr)}
+ .main .novel-stage .novel-dialogue.novel-dialogue{--dialogue-height:144px;max-height:calc(100% - 120px);padding:8px 12px;gap:4px}
+ .novel-dialogue>.scene-reading{min-height:26px;gap:10px}
+ .novel-dialogue>.scene-reading button{min-height:26px;padding:3px 10px;font-size:11px}
+}
+@media(max-width:760px) and (max-height:650px){
+ .app-shell{grid-template-rows:44px 34px minmax(220px,32dvh) minmax(0,1fr)}
+}
+
+/* One GM identity, separate from character portraits and names. */
+.gm-emblem{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;flex:none;color:var(--accent-soft,#d9be8e)}
+.gm-emblem svg{display:block;width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.35;stroke-linejoin:round}
+.message-seal.gm-avatar{border:0;border-radius:0;width:28px;height:28px;overflow:visible;background:none}
+.novel-dialogue>.speaker:has(.gm-emblem)::before{display:none}
+.novel-dialogue>.speaker .gm-emblem{width:24px;height:24px}
+.message-heading .sr-only{position:absolute}
+
+/* A compact divider replaces the composer hint row and trailing blank space. */
+.composer .compose-help{display:none}
+.chat-panel .composer{margin-bottom:0}
+.chat-panel .turn-bar{margin-top:4px;padding-top:4px;border-top:1px solid var(--line)}
+
+/* The map fills the stage; controls and party cards remain overlaid. */
+.table-canvas.map-view{bottom:0}
+.place-empty{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:30px;text-align:center;background:radial-gradient(ellipse at center,#273530,#101715);color:#ded6c0}
+.place-empty>span{font-size:11px;letter-spacing:2px;color:#b4ab8c}.place-empty h2{margin:12px 0;font-size:28px}.place-empty p{max-width:40em;white-space:pre-wrap}
+.history-more{display:block;margin:8px auto 18px;padding:6px 18px;font-size:12px}.history-latest{align-self:center;flex-shrink:0;margin:4px;padding:6px 16px;font-size:12px;border-radius:20px}.history-latest[hidden]{display:none}
+.chat-log{scroll-behavior:auto;overflow-anchor:none}.scene-reading{flex-wrap:wrap}
+.novel-stage:has(.scene-image[hidden]){background:radial-gradient(ellipse at top,#293832,#101715)}
+html,body{height:100%;overflow:hidden}
+.chat-log{position:relative;contain:layout paint}
+.message-heading{position:relative}

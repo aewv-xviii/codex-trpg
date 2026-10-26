@@ -1,0 +1,12 @@
+{
+  "play": {
+    "model": "gpt-6.1-sol",
+    "reasoningEffort": "high",
+    "serviceTier": "standard"
+  },
+  "test": {
+    "model": "gpt-6-luna",
+    "reasoningEffort": "max",
+    "serviceTier": "standard"
+  }
+}
